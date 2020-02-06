@@ -154,8 +154,23 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		char[] letters = {'a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't', 'd', 'g',
+				'b', 'c', 'm', 'p', 'f', 'h', 'v', 'w', 'y', 'k', 'j', 'x', 'q', 'z'};
+		int[] scores = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4,
+				5, 8, 8, 10, 10};
+		int score = 0;
+		
+		for (int i = 0; i < string.length(); i++) {
+			char c = Character.toLowerCase(string.charAt(i));
+			
+			for (int j = 0; j < letters.length; j++) {
+				if (c == letters[j]) {
+					score += scores[j];
+				}
+			}
+		}
+		
+		return score;
 	}
 
 	/**
