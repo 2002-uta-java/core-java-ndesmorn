@@ -15,7 +15,7 @@ public class EvaluationService {
 	 */
 	public String reverse(String string) {
 		String s1 = string;
-		String s2 = new String("");
+		String s2 = "";
 		
 		for (int i = 0; i < s1.length(); i++) {
 			char c = s1.charAt(i);
@@ -34,8 +34,24 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String acronym = "";
+		boolean whiteSpaceFlag = true; // to detect spaces and hyphens
+		
+		for (int i = 0; i < phrase.length(); i++) {
+			char c = phrase.charAt(i);
+			
+			if (whiteSpaceFlag == true) {
+				acronym = acronym + Character.toUpperCase(c) + "";
+				whiteSpaceFlag = false;
+			}
+			else {
+				if (c == ' ' || c == '-') {
+					whiteSpaceFlag = true;
+				}
+			}
+		}
+		
+		return acronym;
 	}
 
 	/**
