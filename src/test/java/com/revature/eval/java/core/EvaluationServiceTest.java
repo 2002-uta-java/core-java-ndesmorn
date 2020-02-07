@@ -191,64 +191,64 @@ public class EvaluationServiceTest {
 		evaluationService.cleanPhoneNumber("123-@:!-7890");
 	}
 
-//	/*******************************************************************
-//	 * Question 6
-//	 ******************************************************************/
-//	@Test
-//	public void countOneWord() {
-//		Map<String, Integer> expectedWordCount = new HashMap<>();
-//		expectedWordCount.put("word", 1);
-//
-//		Map<String, Integer> actualWordCount = evaluationService.wordCount("word");
-//		assertEquals(expectedWordCount, actualWordCount);
-//	}
-//
-//	@Test
-//	public void countOneOfEachWord() {
-//		Map<String, Integer> expectedWordCount = new HashMap<>();
-//		expectedWordCount.put("one", 1);
-//		expectedWordCount.put("of", 1);
-//		expectedWordCount.put("each", 1);
-//
-//		Map<String, Integer> actualWordCount = evaluationService.wordCount("one of each");
-//		assertEquals(expectedWordCount, actualWordCount);
-//	}
-//
-//	@Test
-//	public void multipleOccurrencesOfAWord() {
-//		Map<String, Integer> expectedWordCount = new HashMap<>();
-//		expectedWordCount.put("one", 1);
-//		expectedWordCount.put("fish", 4);
-//		expectedWordCount.put("two", 1);
-//		expectedWordCount.put("red", 1);
-//		expectedWordCount.put("blue", 1);
-//
-//		Map<String, Integer> actualWordCount = evaluationService.wordCount("one fish two fish red fish blue fish");
-//		assertEquals(expectedWordCount, actualWordCount);
-//	}
-//
-//	@Test
-//	public void handlesCrampedLists() {
-//		Map<String, Integer> expectedWordCount = new HashMap<>();
-//		expectedWordCount.put("one", 1);
-//		expectedWordCount.put("two", 1);
-//		expectedWordCount.put("three", 1);
-//
-//		Map<String, Integer> actualWordCount = evaluationService.wordCount("one,two,three");
-//		assertEquals(expectedWordCount, actualWordCount);
-//	}
-//
-//	@Test
-//	public void handlesExpandedLists() {
-//		Map<String, Integer> expectedWordCount = new HashMap<>();
-//		expectedWordCount.put("one", 1);
-//		expectedWordCount.put("two", 1);
-//		expectedWordCount.put("three", 1);
-//
-//		Map<String, Integer> actualWordCount = evaluationService.wordCount("one,\ntwo,\nthree");
-//		assertEquals(expectedWordCount, actualWordCount);
-//	}
-//
+	/*******************************************************************
+	 * Question 6
+	 ******************************************************************/
+	@Test
+	public void countOneWord() {
+		Map<String, Integer> expectedWordCount = new HashMap<>();
+		expectedWordCount.put("word", 1);
+
+		Map<String, Integer> actualWordCount = evaluationService.wordCount("word");
+		assertEquals(expectedWordCount, actualWordCount);
+	}
+
+	@Test
+	public void countOneOfEachWord() {
+		Map<String, Integer> expectedWordCount = new HashMap<>();
+		expectedWordCount.put("one", 1);
+		expectedWordCount.put("of", 1);
+		expectedWordCount.put("each", 1);
+
+		Map<String, Integer> actualWordCount = evaluationService.wordCount("one of each");
+		assertEquals(expectedWordCount, actualWordCount);
+	}
+
+	@Test
+	public void multipleOccurrencesOfAWord() {
+		Map<String, Integer> expectedWordCount = new HashMap<>();
+		expectedWordCount.put("one", 1);
+		expectedWordCount.put("fish", 4);
+		expectedWordCount.put("two", 1);
+		expectedWordCount.put("red", 1);
+		expectedWordCount.put("blue", 1);
+
+		Map<String, Integer> actualWordCount = evaluationService.wordCount("one fish two fish red fish blue fish");
+		assertEquals(expectedWordCount, actualWordCount);
+	}
+
+	@Test
+	public void handlesCrampedLists() {
+		Map<String, Integer> expectedWordCount = new HashMap<>();
+		expectedWordCount.put("one", 1);
+		expectedWordCount.put("two", 1);
+		expectedWordCount.put("three", 1);
+
+		Map<String, Integer> actualWordCount = evaluationService.wordCount("one,two,three");
+		assertEquals(expectedWordCount, actualWordCount);
+	}
+
+	@Test
+	public void handlesExpandedLists() {
+		Map<String, Integer> expectedWordCount = new HashMap<>();
+		expectedWordCount.put("one", 1);
+		expectedWordCount.put("two", 1);
+		expectedWordCount.put("three", 1);
+
+		Map<String, Integer> actualWordCount = evaluationService.wordCount("one,\ntwo,\nthree");
+		assertEquals(expectedWordCount, actualWordCount);
+	}
+
 //	/*******************************************************************
 //	 * Question 7
 //	 ******************************************************************/

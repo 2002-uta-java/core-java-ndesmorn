@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -170,6 +171,7 @@ public class EvaluationService {
 					score += scores[j];
 				}
 			}
+			
 		}
 		
 		return score;
@@ -238,8 +240,36 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		Map<String, Integer> wordcount = new HashMap<>();
+		String word = ""; // a temporary word holder
+		
+		for (int i = 0; i < string.length(); i++) {
+			char c = string.charAt(i);
+			
+			if (c == ' ' || c == ',' || c == '\n') {
+				if (word != "") {
+					if (wordcount.containsKey(word)) {
+						wordcount.put(word, wordcount.get(word) + 1);
+					} else {
+						wordcount.put(word, 1);
+					}
+					
+					word = "";
+				}
+			} else {
+				word = word + Character.toString(c);
+			}
+			
+		}
+		
+		// Adding final word. I would put this paste in a function, but then I didn't.
+		if (wordcount.containsKey(word)) {
+			wordcount.put(word, wordcount.get(word) + 1);
+		} else {
+			wordcount.put(word, 1);
+		}
+		
+		return wordcount;
 	}
 
 	/**
