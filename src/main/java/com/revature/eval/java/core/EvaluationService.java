@@ -19,7 +19,7 @@ public class EvaluationService {
 		
 		for (int i = 0; i < s1.length(); i++) {
 			char c = s1.charAt(i);
-			s2 = String.valueOf(c)+ s2;
+			s2 = String.valueOf(c) + s2;
 		}
 		
 		return s2;
@@ -34,6 +34,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
+		// Any letter immediately following a space or hyphen will be added
+		// to the acronym.
 		String acronym = "";
 		boolean whiteSpaceFlag = true; // to detect spaces and hyphens
 		
@@ -204,9 +206,26 @@ public class EvaluationService {
 	 * Note: As this exercise only deals with telephone numbers used in
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
-	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	public String cleanPhoneNumber(String string) throws IllegalArgumentException{
+		String formattedNumber = "";
+		
+		// Remove all punctuation from phone number.
+		for (int i = 0; i < string.length(); i++) {
+			char c = string.charAt(i);
+			
+			if (Character.isDigit(c)) {
+				formattedNumber = formattedNumber + String.valueOf(c);
+			}
+		}
+		
+		// Determine if the phone number is valid.
+		// A phone number must be exactly 10 digits long.
+		int phoneLength = 10;
+		if (formattedNumber.length() != phoneLength) {
+			throw new IllegalArgumentException();
+		}
+		
+		return formattedNumber;
 	}
 
 	/**
