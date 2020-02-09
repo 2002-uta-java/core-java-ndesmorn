@@ -309,10 +309,57 @@ public class EvaluationService {
 	 */
 	static class BinarySearch<T> {
 		private List<T> sortedList;
-
+		
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
-			return 0;
+			// Implement binary search method. Assumes element is present in list.
+			int min = 0;
+			int max = sortedList.size() - 1;
+			int mid = (min + max)/2;
+			
+			try {
+				int numTest = (int) t;
+			}
+			catch (ClassCastException e) { // Handles the string list ROFL. I'd use general compare methods but I didn't.
+				String num = (String) t;
+				String val = (String) sortedList.get(mid);
+				
+				while (true) {
+					val = (String) sortedList.get(mid);
+					int numCompare = num.compareTo(val);
+					if (numCompare < 0) {
+						max = mid - 1;
+						mid = (min + max)/2;
+					}
+					else if (numCompare > 0) {
+						min = mid + 1;
+						mid = (min + max)/2;
+					}
+					else {
+						return mid;
+					}
+				}
+			}
+			
+			// Integer lists. I'd organize the while loop into a neat method but I didn't.
+			int num = (int) t;
+			int val = (int) sortedList.get(mid);
+			
+			while (true) {
+				val = (int) sortedList.get(mid);
+				int numCompare = num - val;
+				if (numCompare < 0) {
+					max = mid - 1;
+					mid = (min + max)/2;
+				}
+				else if (numCompare > 0) {
+					min = mid + 1;
+					mid = (min + max)/2;
+				}
+				else {
+					return mid;
+				}
+			}
+			
 		}
 
 		public BinarySearch(List<T> sortedList) {
