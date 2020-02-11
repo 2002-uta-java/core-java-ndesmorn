@@ -525,8 +525,41 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			String cipheredWord = "";
+			char[] lowerAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+								 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+								 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
+								 'y', 'z'};
+			char[] upperAlphabet = {'A', 'B', 'C', 'D', 'E', 'F',
+					 			 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+					 			 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+					 			 'W', 'X', 'Y', 'Z'};
+			int index = 0;
+			char[] chars = string.toCharArray();
+
+			for (char ch : chars) {
+				if (ch == ' ' || ch == '!' || ch == ',' || ch == '\'' || ch == '.' || Character.isDigit(ch)) {
+					cipheredWord = cipheredWord + Character.toString(ch);
+					}
+				else {
+					for (int i = 0; i < lowerAlphabet.length; i++) {
+						if (ch == lowerAlphabet[i]) {
+							index = i;
+							index = (index + this.key) % 26;
+							cipheredWord = cipheredWord + Character.toString(lowerAlphabet[index]);
+							break;
+						}
+						else if (ch == upperAlphabet[i]) {
+							index = i;
+							index = (index + this.key) % 26;
+							cipheredWord = cipheredWord + Character.toString(upperAlphabet[index]);
+							break;
+						}
+					}
+				}
+			}
+			
+			return cipheredWord;
 		}
 
 	}
@@ -543,9 +576,21 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
-	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+	public int calculateNthPrime(int i) throws IllegalArgumentException {
+		int n = i; // Code from college, go tartans.
+		if (n == 0) {
+			throw new IllegalArgumentException("Bad argument.");
+		}
+		
+		int found = 0;
+		int guess = 0;
+		while (found <= n) {
+			guess += 1;
+			if (isPrime(guess)) {
+				found += 1;
+			}
+		}
+		return guess;
 	}
 
 	/**

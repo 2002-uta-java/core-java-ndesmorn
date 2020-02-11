@@ -394,70 +394,70 @@ public class EvaluationServiceTest {
 		assertEquals(Arrays.asList(5L, 17L, 23L, 461L), evaluationService.calculatePrimeFactorsOf(901255L));
 	}
 
-//	/*******************************************************************
-//	 * Question 11
-//	 ******************************************************************/
-//
-//	@Test
-//	public void rotateSingleCharacterWithWrapAround() {
-//		EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(13);
-//		assertEquals("a", rotationalCipher.rotate("n"));
-//	}
-//
-//	@Test
-//	public void rotateCapitalLetters() {
-//		EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(5);
-//		assertEquals("TRL", rotationalCipher.rotate("OMG"));
-//	}
-//
-//	@Test
-//	public void rotateNumbers() {
-//		EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(4);
-//		assertEquals("Xiwxmrk 1 2 3 xiwxmrk", rotationalCipher.rotate("Testing 1 2 3 testing"));
-//	}
-//
-//	@Test
-//	public void rotatePunctuation() {
-//		EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(21);
-//		assertEquals("Gzo'n zvo, Bmviyhv!", rotationalCipher.rotate("Let's eat, Grandma!"));
-//	}
-//
-//	@Test
-//	public void rotateAllLetters() {
-//		EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(13);
-//		assertEquals("The quick brown fox jumps over the lazy dog.",
-//				rotationalCipher.rotate("Gur dhvpx oebja sbk whzcf bire gur ynml qbt."));
-//	}
-//
-//	/*******************************************************************
-//	 * Question 12
-//	 ******************************************************************/
-//	@Test
-//	public void testFirstPrime() {
-//		assertThat(evaluationService.calculateNthPrime(1), is(2));
-//	}
-//
-//	@Test
-//	public void testSecondPrime() {
-//		assertThat(evaluationService.calculateNthPrime(2), is(3));
-//	}
-//
-//	@Test
-//	public void testSixthPrime() {
-//		assertThat(evaluationService.calculateNthPrime(6), is(13));
-//	}
-//
-//	@Test
-//	public void testBigPrime() {
-//		assertThat(evaluationService.calculateNthPrime(10001), is(104743));
-//	}
-//
-//	@Test
-//	public void testUndefinedPrime() {
-//		expectedException.expect(IllegalArgumentException.class);
-//		evaluationService.calculateNthPrime(0);
-//	}
-//
+	/*******************************************************************
+	 * Question 11
+	 ******************************************************************/
+
+	@Test
+	public void rotateSingleCharacterWithWrapAround() {
+		EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(13);
+		assertEquals("a", rotationalCipher.rotate("n"));
+	}
+
+	@Test
+	public void rotateCapitalLetters() {
+		EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(5);
+		assertEquals("TRL", rotationalCipher.rotate("OMG"));
+	}
+
+	@Test
+	public void rotateNumbers() {
+		EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(4);
+		assertEquals("Xiwxmrk 1 2 3 xiwxmrk", rotationalCipher.rotate("Testing 1 2 3 testing"));
+	}
+
+	@Test
+	public void rotatePunctuation() {
+		EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(21);
+		assertEquals("Gzo'n zvo, Bmviyhv!", rotationalCipher.rotate("Let's eat, Grandma!"));
+	}
+
+	@Test
+	public void rotateAllLetters() {
+		EvaluationService.RotationalCipher rotationalCipher = new EvaluationService.RotationalCipher(13);
+		assertEquals("The quick brown fox jumps over the lazy dog.",
+				rotationalCipher.rotate("Gur dhvpx oebja sbk whzcf bire gur ynml qbt."));
+	}
+
+	/*******************************************************************
+	 * Question 12
+	 ******************************************************************/
+	@Test
+	public void testFirstPrime() {
+		assertThat(evaluationService.calculateNthPrime(1), is(2));
+	}
+
+	@Test
+	public void testSecondPrime() {
+		assertThat(evaluationService.calculateNthPrime(2), is(3));
+	}
+
+	@Test
+	public void testSixthPrime() {
+		assertThat(evaluationService.calculateNthPrime(6), is(13));
+	}
+
+	@Test
+	public void testBigPrime() {
+		assertThat(evaluationService.calculateNthPrime(10001), is(104743));
+	}
+
+	@Test
+	public void testUndefinedPrime() {
+		expectedException.expect(IllegalArgumentException.class);
+		evaluationService.calculateNthPrime(0);
+	}
+
 //	/*******************************************************************
 //	 * Question 13
 //	 ******************************************************************/
