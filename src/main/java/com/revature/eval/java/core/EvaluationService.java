@@ -728,8 +728,46 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isValidIsbn(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		char[] characters = string.toCharArray();
+		String cleanString = "";
+		int x1; int x2; int x3; int x4; int x5; int x6; int x7; int x8; int x9; int x10;
+		
+		// Clean out hyphens.
+		for (char c: characters) {
+			if (c != '-') {
+				cleanString = cleanString + Character.toString(c);
+			}
+		}
+		
+		char[] cleanChars = cleanString.toCharArray();
+		
+		// Check index 9 for validity.
+		char ind9 = cleanChars[9];
+		if (Character.isDigit(ind9) || ind9 == 'X') { // If last digit is X or number, calculate formula.
+			x1 = Character.getNumericValue(cleanChars[0]);
+			x2 = Character.getNumericValue(cleanChars[1]);
+			x3 = Character.getNumericValue(cleanChars[2]);
+			x4 = Character.getNumericValue(cleanChars[3]);
+			x5 = Character.getNumericValue(cleanChars[4]);
+			x6 = Character.getNumericValue(cleanChars[5]);
+			x7 = Character.getNumericValue(cleanChars[6]);
+			x8 = Character.getNumericValue(cleanChars[7]);
+			x9 = Character.getNumericValue(cleanChars[8]);
+			
+			if (ind9 == 'X') {
+				x10 = 10;
+			} else {
+				x10 = Character.getNumericValue(cleanChars[9]);
+			}
+		}
+		else {
+			return false;
+		}
+		
+		int validation = (x1*10 + x2*9 + x3*8 + x4*7 + x5*6 + x6*5
+				+ x7*4 + x8*3 + x9*2 + x10*1) % 11;
+
+		return validation == 0;
 	}
 
 	/**
@@ -746,8 +784,32 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+				 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+				 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
+				 'y', 'z'};
+		char[] characters = string.toCharArray();
+		int[] count = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		
+		// Keep a count of all the letters that appear.
+		for (char ch: characters) {
+			for (int i = 0; i < alphabet.length; i++) {
+				if (ch == alphabet[i]) {
+					count[i] = count[i] + 1;
+				}
+			}
+		}
+		
+		
+		// Check if all letters have appeared at least once.
+		for (int score: count) {
+			if (score == 0) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 
 	/**
