@@ -626,8 +626,51 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			String ciphered = "";
+			char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+								 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+								 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
+								 'y', 'z'};
+			char[] backwardsAlphabet = {'z', 'y', 'x', 'w', 'v', 'u', 't',
+										's', 'r', 'q', 'p', 'o', 'n', 'm',
+										'l', 'k', 'j', 'i', 'h', 'g', 'f', 
+										'e', 'd', 'c', 'b', 'a'};
+			string = string.toLowerCase();
+			char[] characters = string.toCharArray();
+			int count = 1;
+			
+			for (char ch: characters) {
+				for (int i = 0; i < alphabet.length; i++) {
+					if (ch == alphabet[i]) {
+						ciphered = ciphered + Character.toString(backwardsAlphabet[i]);
+						if (count == 5) {
+							ciphered = ciphered + " ";
+							count = 1;
+						}
+						else {
+							count++;
+						}
+						break;
+					}
+				}
+				if (Character.isDigit(ch)) {
+					ciphered = ciphered + Character.toString(ch);
+					if (count == 5) {
+						ciphered = ciphered + " ";
+						count = 1;
+					}
+					else {
+						count++;
+					}
+				}
+			}
+			
+			// Fix trailing whitespaces.
+			if (ciphered.toCharArray()[ciphered.length() - 1] == ' ') {
+				ciphered = ciphered.substring(0, ciphered.length() - 1);
+			}
+			
+			return ciphered;
 		}
 
 		/**
@@ -637,8 +680,28 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			String ciphered = "";
+			char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+								 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+								 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
+								 'y', 'z'};
+			char[] backwardsAlphabet = {'z', 'y', 'x', 'w', 'v', 'u', 't',
+										's', 'r', 'q', 'p', 'o', 'n', 'm',
+										'l', 'k', 'j', 'i', 'h', 'g', 'f', 
+										'e', 'd', 'c', 'b', 'a'};
+			char[] characters = string.toCharArray();
+			
+			for (char ch: characters) {
+				for (int i = 0; i < backwardsAlphabet.length; i++) {
+					if (ch == backwardsAlphabet[i]) {
+						ciphered = ciphered + Character.toString(alphabet[i]);
+					}
+				}
+				if (Character.isDigit(ch)) {
+					ciphered = ciphered + Character.toString(ch);
+				}
+			}
+			return ciphered;
 		}
 	}
 
