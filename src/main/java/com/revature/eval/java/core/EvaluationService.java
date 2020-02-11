@@ -915,7 +915,6 @@ public class EvaluationService {
 			}
 		}
 		
-		System.out.println(cleanString);
 		char[] cleanChars = cleanString.toCharArray();
 		
 		// 1 (odd length) 0 (even length)
@@ -937,7 +936,6 @@ public class EvaluationService {
 			sum += num;
 		}
 		
-		System.out.println(sum);
 		return sum % 10 == 0;
 	}
 
@@ -969,7 +967,24 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		// TODO Write an implementation for this method declaration
+		String[] stringArray = string.split(" ");
+		Integer num1 = Integer.parseInt(stringArray[2]);
+		String nums = stringArray[stringArray.length - 1];
+		Integer num2 = Integer.parseInt(nums.substring(0, nums.length() - 1));
+		
+		String operator = stringArray[3];
+		
+		switch (operator) {
+		case "plus":
+			return (int) num1 + num2;
+		case "minus":
+			return (int) num1 - num2;
+		case "multiplied":
+			return (int) num1 * num2;
+		case "divided":
+			return (int) num1 / num2;
+		}
+		
 		return 0;
 	}
 
