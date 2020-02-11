@@ -1,5 +1,9 @@
 package com.revature.eval.java.core;
 
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -801,7 +805,6 @@ public class EvaluationService {
 			}
 		}
 		
-		
 		// Check if all letters have appeared at least once.
 		for (int score: count) {
 			if (score == 0) {
@@ -821,8 +824,13 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		// LocalDateTime.of(1991, Month.MARCH, 27, 1, 46, 40)
+		// LocalDateTime.of(int year, Month month, int dayOfMonth, int hour, int minute, int second)
+		// LocalDateTime plusDays(long days)
+		int gigasecond = 1000000000;
+//		given.plus(Period.ofDays());
+		Temporal updatedTime = given.plus(gigasecond, ChronoUnit.SECONDS);
+		return updatedTime;
 	}
 
 	/**
@@ -839,8 +847,21 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		int multipleSum = 0;
+		ArrayList<Integer> existingMultiples = new ArrayList<Integer>();
+		
+		for (int multiple: set) {
+			int factor = multiple;
+			while (factor < i) {
+				if (!existingMultiples.contains(factor)) {
+					existingMultiples.add(factor);
+					multipleSum += factor;
+				}
+				factor += multiple;
+			}
+		}
+		
+		return multipleSum;
 	}
 
 	/**
@@ -880,8 +901,44 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isLuhnValid(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		char[] characters = string.toCharArray();
+		String cleanString = "";
+		
+		// Punctuation is invalid. Extract numbers.
+		for (char c: characters) {
+			if (Character.isWhitespace(c)) { continue; }
+			else if (!Character.isDigit(c)) {
+				return false;
+			}
+			else {
+				cleanString = cleanString + Character.toString(c);
+			}
+		}
+		
+		System.out.println(cleanString);
+		char[] cleanChars = cleanString.toCharArray();
+		
+		// 1 (odd length) 0 (even length)
+		int sum = 0;
+		for (int i = 0; i < cleanChars.length; i++) {
+			int num = Integer.parseInt(Character.toString(cleanChars[i]));
+			if (cleanChars.length % 2 == 1) {
+				if (i % 2 == 1) {
+					num = 2*num;
+					if (num > 9) { num -= 9; }
+				}
+			}
+			else {
+				if (i % 2 == 0) {
+					num = 2*num;
+					if (num > 9) { num -= 9; }
+				}
+			}
+			sum += num;
+		}
+		
+		System.out.println(sum);
+		return sum % 10 == 0;
 	}
 
 	/**
