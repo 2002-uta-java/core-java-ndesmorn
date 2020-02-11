@@ -1,6 +1,8 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -316,37 +318,12 @@ public class EvaluationService {
 			int max = sortedList.size() - 1;
 			int mid = (min + max)/2;
 			
-			try {
-				int numTest = (int) t;
-			}
-			catch (ClassCastException e) { // Handles the string list ROFL. I'd use general compare methods but I didn't.
-				String num = (String) t;
-				String val = (String) sortedList.get(mid);
-				
-				while (true) {
-					val = (String) sortedList.get(mid);
-					int numCompare = num.compareTo(val);
-					if (numCompare < 0) {
-						max = mid - 1;
-						mid = (min + max)/2;
-					}
-					else if (numCompare > 0) {
-						min = mid + 1;
-						mid = (min + max)/2;
-					}
-					else {
-						return mid;
-					}
-				}
-			}
-			
-			// Integer lists. I'd organize the while loop into a neat method but I didn't.
-			int num = (int) t;
-			int val = (int) sortedList.get(mid);
+			T num = t;
+			T val = sortedList.get(mid);
 			
 			while (true) {
-				val = (int) sortedList.get(mid);
-				int numCompare = num - val;
+				val = sortedList.get(mid);
+				int numCompare = num.hashCode() - val.hashCode();
 				if (numCompare < 0) {
 					max = mid - 1;
 					mid = (min + max)/2;
@@ -395,8 +372,41 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String[] words = string.split(" ");
+		String[] vowels = {"a", "e", "i", "o", "u"};
+		String answer = "";
+		String translation = "";
+		char prev = 'a';
+		
+		for (String word: words) {
+			boolean vowelFlag = false;
+			
+			for (int i = 0; i < word.length(); i++) {
+				if (vowelFlag == false) { 
+					for (String vowel: vowels) {
+						// Special case "qu" (treat u as consonant if after q"
+						if (word.charAt(i) == 'u') {
+							if (prev == 'q') {
+								vowelFlag = true;
+								translation = word.substring(i+1) + word.substring(0, i+1);
+								answer = answer + translation + "ay ";
+							}
+						}
+						if (vowel.charAt(0) == word.charAt(i) && vowelFlag == false) { // detects vowel
+							vowelFlag = true;
+							translation = word.substring(i) + word.substring(0, i);
+							answer = answer + translation + "ay ";
+						}
+						prev = word.charAt(i);
+					}
+				}
+			}
+		}
+		
+		// Remove the extra whitespace at the end.
+		answer = answer.substring(0, answer.length() - 1);
+		
+		return answer;
 	}
 
 	/**
@@ -415,8 +425,21 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		// Store digits, determine number of digits.
+		int origInput = input;
+		int digitCount = 0;
+		ArrayList<Integer> digits = new ArrayList<>();
+		while (input != 0) {
+			digits.add(input % 10);
+			digitCount += 1;
+			input = input / 10;
+		}
+		
+		int sum = 0;
+		for (int i = 0; i < digits.size(); i++) {
+			sum = (int) (sum + Math.pow(digits.get(i), digitCount));
+		}
+		return sum == origInput;
 	}
 
 	/**
@@ -430,8 +453,41 @@ public class EvaluationService {
 	 * @return
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		int num = (int) l;
+		List<Long> factors = new ArrayList<Long>();
+		int factor = 2;
+		
+		while (true) {
+			if (isPrime(factor)) {
+				if (num % factor == 0) { // is factor and prime
+					factors.add((long) factor);
+					if (num == factor) {
+						break;
+					}
+					else {
+						num = num / factor;
+						factor = 1; // takes increment into account.
+					}
+				}
+			}
+			factor++;
+		}
+
+		return factors;
+	}
+	
+	public boolean isPrime(int num) { // Code taken from isPrime google search.
+		boolean isPrime = true;
+        for(int i = 2; i <= num/2; ++i)
+        {
+            // condition for nonprime number
+            if(num % i == 0)
+            {
+                isPrime = false;
+                break;
+            }
+        }
+		return isPrime;
 	}
 
 	/**
